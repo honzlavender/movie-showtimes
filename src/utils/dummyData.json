@@ -1,0 +1,121 @@
+{
+  "date": "2025-10-15",
+  "location": "Brooklyn, NY",
+  "theaters": [
+    {
+      "name": "Nitehawk Cinema - Prospect Park",
+      "address": "188 Prospect Park W, Brooklyn, NY 11215",
+      "movies": [
+        {
+          "title": "One Battle After Another",
+          "runtime": "2h 41m",
+          "rating": "R",
+          "showtimes": [
+            "3:00 PM",
+            "3:45 PM",
+            "5:30 PM",
+            "9:00 PM"
+          ]
+        },
+        {
+          "title": "Tron: Ares",
+          "runtime": "1h 59m",
+          "rating": "PG-13",
+          "showtimes": [
+            "2:45 PM",
+            "8:45 PM",
+            "10:00 PM"
+          ]
+        },
+        {
+          "title": "The Smashing Machine",
+          "runtime": "2h 3m",
+          "rating": "R",
+          "showtimes": [
+            "3:30 PM",
+            "6:30 PM",
+            "9:15 PM"
+          ]
+        },
+        {
+          "title": "Roofman",
+          "runtime": "2h 6m",
+          "rating": "R",
+          "showtimes": [
+            "2:45 PM",
+            "5:45 PM",
+            "9:30 PM"
+          ]
+        },
+        {
+          "title": "Good Boy",
+          "runtime": "1h 12m",
+          "rating": "PG-13",
+          "showtimes": [
+            "10:15 PM"
+          ]
+        },
+        {
+          "title": "A House of Dynamite",
+          "runtime": "1h 52m",
+          "rating": "R",
+          "showtimes": [
+            "4:15 PM",
+            "7:00 PM",
+            "9:45 PM"
+          ]
+        },
+        {
+          "title": "Anemone",
+          "runtime": "2h 5m",
+          "rating": "R",
+          "showtimes": [
+            "7:15 PM"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BAM Rose Cinemas",
+      "address": "30 Lafayette Ave, Brooklyn, NY 11217",
+      "movies": [
+        {
+          "title": "Shorts: Avant Queer (NewFest Shorts)",
+          "runtime": null,
+          "rating": null,
+          "showtimes": [
+            "7:30 PM"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cobble Hill Cinemas",
+      "address": "265 Court St, Brooklyn, NY 11231",
+      "movies": [
+        {
+          "title": "The Bat (Silent Film Series)",
+          "runtime": null,
+          "rating": null,
+          "showtimes": [
+            "7:30 PM"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Williamsburg Cinemas",
+      "address": "217 Grand St, Brooklyn, NY 11211",
+      "movies": [
+        {
+          "title": "One Battle After Another",
+          "runtime": null,
+          "rating": null,
+          "showtimes": [
+            "7:15 PM"
+          ]
+        }
+      ]
+    }
+  ]
+}
