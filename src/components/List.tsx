@@ -1,4 +1,3 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import {
   StyleSheet,
   Text,
@@ -8,38 +7,37 @@ import {
   TouchableOpacity,
 } from "react-native";
 import GroupTimes from "./GroupTimes";
-
-const COLORS = ["#FFC0CB", "#ADD8E6", "#90EE90", "#FFD700"]; // Pink, Light Blue, Light Green, Gold
+import { COLORS, Movie, ShowTimeItem } from "../types/types";
 
 interface ListProps {
-  data: string[];
-  onPressItem?: (item: string) => void;
+  data: Movie[] | ShowTimeItem[];
+  onPressItem?: (item: Movie) => void;
   isShowtimesList?: boolean;
 }
 
 const List: React.FC<ListProps> = ({ data, onPressItem, isShowtimesList }) => {
-  type ItemProps = { title: string; index: number };
+  type ItemProps = { movie: Movie; index: number };
 
-  const Item = ({ title, index }: ItemProps) => {
+  const Item = ({ movie, index }: ItemProps) => {
     const backgroundColor = COLORS[index % COLORS.length];
     return (
       <View style={[styles.item, { backgroundColor }]}>
-        <TouchableOpacity onPress={() => onPressItem?.(title)}>
-          <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity onPress={() => onPressItem?.(movie)}>
+          <Text style={styles.title}>{movie.title}</Text>
         </TouchableOpacity>
       </View>
     );
   };
 
   if (isShowtimesList) {
-    return <GroupTimes />;
+    return <GroupTimes showtimes={data as ShowTimeItem[]} />;
   }
 
   return (
     <View>
       <FlatList
-        data={data}
-        renderItem={({ item, index }) => <Item title={item} index={index} />}
+        data={data as Movie[]}
+        renderItem={({ item, index }) => <Item movie={item} index={index} />}
         // keyExtractor={(item, index) => index.toString()}
       />
     </View>

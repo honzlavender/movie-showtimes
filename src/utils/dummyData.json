@@ -114,6 +114,16 @@
           "showtimes": [
             "7:15 PM"
           ]
+        },
+        {
+          "title": "Tron: Ares",
+          "runtime": "1h 59m",
+          "rating": "PG-13",
+          "showtimes": [
+            "2:45 PM",
+            "8:45 PM",
+            "10:00 PM"
+          ]
         }
       ]
     }

@@ -7,13 +7,8 @@ import HeaderBar from "./src/components/HeaderBar";
 import HomeScreen from "./src/app/HomeScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Clock, Church } from "lucide-react-native";
-import { View, Text } from "react-native";
-
-export type RootStackParamList = {
-  BottomTabs: undefined;
-  theaters: undefined;
-  Home: undefined;
-};
+import { RootStackParamList } from "./src/types/types";
+import MovieDetails from "./src/app/MovieDetails";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -44,14 +39,14 @@ function MyTabs() {
       <Tab.Screen
         name="Showtimes"
         options={{
-          // headerShown: false,
-          headerTitle: () => (
-            <View>
-              <Text>
-                Shows are sorted by time in ascending order and grouped by hour
-              </Text>
-            </View>
-          ),
+          headerShown: false,
+          // headerTitle: () => (
+          //   <View>
+          //     <Text>
+          //       Shows are sorted by time in ascending order and grouped by hour
+          //     </Text>
+          //   </View>
+          // ),
           tabBarIcon: ({ color, size }) => <Clock color={color} size={size} />,
         }}
       >
@@ -71,6 +66,11 @@ function RootStack() {
           title: "WEDNESDAY, OCTOBER 15",
           headerTitle: (props) => <HeaderBar {...props} />,
         }}
+      />
+      <Stack.Screen
+        name="MovieDetails"
+        component={MovieDetails}
+        options={{ title: "" }}
       />
     </Stack.Navigator>
   );

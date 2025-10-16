@@ -4,56 +4,30 @@ import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import List from "../components/List";
-import { RootStackParamList } from "../../App";
+import { Movie, NavigationProp, ShowTimeItem } from "../types/types";
+import { useAllMovieData } from "../hooks/getAllMovieData";
 
-const dummyData = require("../utils/dummyData.json");
-
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+// const dummyData = require("../utils/dummyData.json");
 
 interface HomeScreenProps {
   type: "movies" | "theaters" | "showtimes";
 }
 
 export default function HomeScreen({ type }: HomeScreenProps) {
+  const { theaters, showtimes, movies } = useAllMovieData();
   const navigation = useNavigation<NavigationProp>();
 
-  // --- prepare data with useMemo for performance --- //
-  const movieTitles = useMemo(
-    () =>
-      dummyData.theaters.flatMap((t: any) => t.movies.map((m: any) => m.title)),
-    []
-  );
-
-  const theaters = useMemo(
-    () => dummyData.theaters.map((t: any) => t.name),
-    []
-  );
-
-  const showtimes = useMemo(
-    () =>
-      dummyData.theaters
-        .flatMap((t: any) => t.movies.flatMap((m: any) => m.showtimes))
-        .sort((a: string, b: string) => {
-          const toMinutes = (time: string) => {
-            const [h, rest] = time.split(":");
-            const [m, meridian] = rest.split(" ");
-            let hours = parseInt(h, 10);
-            const minutes = parseInt(m, 10);
-            if (meridian === "PM" && hours !== 12) hours += 12;
-            if (meridian === "AM" && hours === 12) hours = 0;
-            return hours * 60 + minutes;
-          };
-          return toMinutes(a) - toMinutes(b);
-        }),
-    []
+  const uniqueMovies = movies.filter(
+    (m: { title: any }, i: any, arr: any[]) =>
+      arr.findIndex((x) => x.title === m.title) === i
   );
 
   const getData = () => {
     switch (type) {
       case "movies":
-        return movieTitles;
+        return uniqueMovies;
       case "theaters":
-        return theaters;
+        return theaters.map((name: any) => name.name);
       case "showtimes":
         return showtimes;
       default:
@@ -61,16 +35,17 @@ export default function HomeScreen({ type }: HomeScreenProps) {
     }
   };
 
-  //   const handlePressItem = (item: string) => {
-  //     if (type === "movies") {
-  //       navigation.navigate("Theaters", { movieTitle: item });
-  //     }
-  //     // optionally handle other types
-  //   };
+  const handlePressItem = (movie: Movie) => {
+    navigation.navigate("MovieDetails", { movie });
+  };
 
   return (
     <View style={{ flex: 1 }}>
-      <List data={getData()} isShowtimesList={type === "showtimes"} />
+      <List
+        data={getData()}
+        isShowtimesList={type === "showtimes"}
+        onPressItem={handlePressItem}
+      />
     </View>
   );
 }
