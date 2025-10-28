@@ -6,7 +6,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "MovieDetails">;
 
 const MovieDetails: React.FC<Props> = ({ route }) => {
   const { movie } = route.params;
-
+// console.log(movie)
   return (
     <View>
       <Text style={{ fontSize: 24 }}>{movie.title}</Text>

@@ -7,23 +7,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 import GroupTimes from "./GroupTimes";
-import { COLORS, Movie, ShowTimeItem } from "../types/types";
+import { COLORS, Movie, ShowTimeItem, Theater } from "../types/types";
 
 interface ListProps {
-  data: Movie[] | ShowTimeItem[];
-  onPressItem?: (item: Movie) => void;
+  data: Movie[] | ShowTimeItem[] | Theater[];
+  onPressItem?: (item: Movie | Theater) => void;
   isShowtimesList?: boolean;
 }
 
 const List: React.FC<ListProps> = ({ data, onPressItem, isShowtimesList }) => {
-  type ItemProps = { movie: Movie; index: number };
-
-  const Item = ({ movie, index }: ItemProps) => {
+  const Item = ({ item, index }: { item: Movie | Theater; index: number }) => {
     const backgroundColor = COLORS[index % COLORS.length];
+    const displayText = "title" in item ? item.title : item.name;
+
     return (
       <View style={[styles.item, { backgroundColor }]}>
-        <TouchableOpacity onPress={() => onPressItem?.(movie)}>
-          <Text style={styles.title}>{movie.title}</Text>
+        <TouchableOpacity onPress={() => onPressItem?.(item)}>
+          <Text style={styles.title}>{displayText}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -32,13 +32,11 @@ const List: React.FC<ListProps> = ({ data, onPressItem, isShowtimesList }) => {
   if (isShowtimesList) {
     return <GroupTimes showtimes={data as ShowTimeItem[]} />;
   }
-
   return (
     <View>
       <FlatList
-        data={data as Movie[]}
-        renderItem={({ item, index }) => <Item movie={item} index={index} />}
-        // keyExtractor={(item, index) => index.toString()}
+        data={data as any}
+        renderItem={({ item, index }) => <Item item={item} index={index} />}
       />
     </View>
   );

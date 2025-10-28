@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import List from "../components/List";
-import { Movie, NavigationProp, ShowTimeItem } from "../types/types";
+import { Movie, NavigationProp, ShowTimeItem, Theater } from "../types/types";
 import { useAllMovieData } from "../hooks/getAllMovieData";
 
 // const dummyData = require("../utils/dummyData.json");
@@ -27,7 +27,7 @@ export default function HomeScreen({ type }: HomeScreenProps) {
       case "movies":
         return uniqueMovies;
       case "theaters":
-        return theaters.map((name: any) => name.name);
+        return theaters; //.map((name: any) => name.name);
       case "showtimes":
         return showtimes;
       default:
@@ -35,8 +35,14 @@ export default function HomeScreen({ type }: HomeScreenProps) {
     }
   };
 
-  const handlePressItem = (movie: Movie) => {
-    navigation.navigate("MovieDetails", { movie });
+  // const handlePressItem = (movie: Movie) => {
+  const handlePressItem = (item: Movie | Theater) => {
+    if (type === "movies") {
+      navigation.navigate("MovieDetails", { movie: item as Movie });
+    }
+    if (type === "theaters") {
+      navigation.navigate("TheaterDetails", { theater: item as Theater });
+    }
   };
 
   return (

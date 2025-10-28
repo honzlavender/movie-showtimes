@@ -31,6 +31,8 @@ const uniqueTitles = useMemo(
     }));
   }, []);
 
+  // console.log('theaters',theaters)
+
   // ⏰ All Showtimes
   const showtimes = useMemo<ShowTimeItem[]>(() => {
     const all = dummyData.theaters.flatMap((t: any) =>

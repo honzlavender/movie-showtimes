@@ -5,6 +5,7 @@ export type RootStackParamList = {
   theaters: undefined;
   Home: undefined;
   MovieDetails: { movie: Movie };
+  TheaterDetails: { theater: Theater }
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;

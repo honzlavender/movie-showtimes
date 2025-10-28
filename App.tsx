@@ -9,6 +9,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { Clock, Church } from "lucide-react-native";
 import { RootStackParamList } from "./src/types/types";
 import MovieDetails from "./src/app/MovieDetails";
+import TheaterDetails from "./src/app/TheatherDetails";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -70,6 +71,11 @@ function RootStack() {
       <Stack.Screen
         name="MovieDetails"
         component={MovieDetails}
+        options={{ title: "" }}
+      />
+      <Stack.Screen
+        name="TheaterDetails"
+        component={TheaterDetails}
         options={{ title: "" }}
       />
     </Stack.Navigator>
